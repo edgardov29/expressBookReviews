@@ -55,7 +55,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
     }
     
  });
-//Tarea 11
+/* //Tarea 11
 async function getBooksByISBN(isbn){
     try{
         const response = await axios.get(`http://localhost:5000/isbn/${isbn}`);
@@ -66,7 +66,7 @@ async function getBooksByISBN(isbn){
 }
   
 // Llamada de prueba con ISBN 2
-getBooksByISBN(2);
+getBooksByISBN(2); */
 
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
@@ -88,6 +88,17 @@ public_users.get('/author/:author', function (req, res) {
     }
 });
 
+async function getBooksByAuthor(author){
+    try{
+        const response = await axios.get(`http://localhost:5000/author/${author}`);
+        console.log(response.data);response
+    } catch (error){
+        console.log(`Algo ha fallado: ${error}`)
+    }
+}
+
+// Llamada de prueba con autor "Chinua Achebe"
+getBooksByAuthor("Chinua Achebe");
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
