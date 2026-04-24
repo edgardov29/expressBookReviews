@@ -29,7 +29,7 @@ public_users.get('/',function (req, res) {
 
 
 
-async function getBooks() {
+/* async function getBooks() {
     try {
         const response = await axios.get("http://localhost:5000/");
         console.log(response.data);
@@ -38,12 +38,12 @@ async function getBooks() {
     }
 }
 
-getBooks();
+getBooks(); */
 
 
 
 
-// Get book details based on ISBN
+// Get book details based on ISBN Tarea 2
 public_users.get('/isbn/:isbn',function (req, res) {
     let isbn = req.params.isbn
     let book = books[isbn]
@@ -55,7 +55,19 @@ public_users.get('/isbn/:isbn',function (req, res) {
     }
     
  });
+//Tarea 11
+async function getBooksByISBN(isbn){
+    try{
+        const response = await axios.get(`http://localhost:5000/isbn/${isbn}`);
+        console.log(response.data)
+    } catch (error){
+        console.log("Algo ha fallado", error)
+    }
+}
   
+// Llamada de prueba con ISBN 2
+getBooksByISBN(2);
+
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
     let author = req.params.author;
