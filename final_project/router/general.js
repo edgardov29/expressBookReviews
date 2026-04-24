@@ -5,7 +5,6 @@ let users = require("./auth_users.js").users;
 const public_users = express.Router();
 const axios = require("axios");
 
-
 public_users.post("/register", (req,res) => {
     let username = req.body.username;
     let password = req.body.password;
@@ -28,20 +27,20 @@ public_users.get('/',function (req, res) {
     //return res.status(300).json({message: "Yet to be implemented"});
 });
 
-function getBooks() {
-    fetch("http://localhost:5000/")
-        .then(response => {
-            // fetch devuelve un objeto Response, hay que convertirlo a JSON
-            return response.json();
-        })
-        .then(data => {
-            // aquí ya tienes los datos de los libros
-            console.log(data);
-        })
-        .catch(error => {
-            console.log("Algo ha fallado:", error);
-        });
+
+
+async function getBooks() {
+    try {
+        const response = await axios.get("http://localhost:5000/");
+        console.log(response.data);
+    } catch (error) {
+        console.log("Algo ha fallado:", error);
+    }
 }
+
+getBooks();
+
+
 
 
 // Get book details based on ISBN
