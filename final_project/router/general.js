@@ -3,6 +3,7 @@ let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
+const axios = require("axios");
 
 
 public_users.post("/register", (req,res) => {
@@ -26,6 +27,22 @@ public_users.get('/',function (req, res) {
     res.send(JSON.stringify(books, null, 2))
     //return res.status(300).json({message: "Yet to be implemented"});
 });
+
+function getBooks() {
+    fetch("http://localhost:5000/")
+        .then(response => {
+            // fetch devuelve un objeto Response, hay que convertirlo a JSON
+            return response.json();
+        })
+        .then(data => {
+            // aquí ya tienes los datos de los libros
+            console.log(data);
+        })
+        .catch(error => {
+            console.log("Algo ha fallado:", error);
+        });
+}
+
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
