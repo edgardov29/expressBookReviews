@@ -29,7 +29,7 @@ public_users.get('/',function (req, res) {
 
 
 
-/* async function getBooks() {
+async function getBooks() {
     try {
         const response = await axios.get("http://localhost:5000/");
         console.log(response.data);
@@ -38,7 +38,7 @@ public_users.get('/',function (req, res) {
     }
 }
 
-getBooks(); */
+/* getBooks(); */
 
 
 
@@ -55,7 +55,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
     }
     
  });
-/* //Tarea 11
+//Tarea 11
 async function getBooksByISBN(isbn){
     try{
         const response = await axios.get(`http://localhost:5000/isbn/${isbn}`);
@@ -65,7 +65,7 @@ async function getBooksByISBN(isbn){
     }
 }
   
-// Llamada de prueba con ISBN 2
+/* // Llamada de prueba con ISBN 2
 getBooksByISBN(2); */
 
 // Get book details based on author
@@ -97,8 +97,8 @@ async function getBooksByAuthor(author){
     }
 }
 
-// Llamada de prueba con autor "Chinua Achebe"
-getBooksByAuthor("Chinua Achebe");
+/* // Llamada de prueba con autor "Chinua Achebe"
+getBooksByAuthor("Chinua Achebe"); */
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
@@ -119,6 +119,25 @@ public_users.get('/title/:title',function (req, res) {
     }
 
 });
+
+function getBookByTitle(title) {
+    fetch(`http://localhost:5000/title/${title}`)
+        .then(response => {
+            // fetch devuelve un objeto Response, hay que convertirlo a JSON
+            return response.json();
+        })
+        .then(data => {
+            // aquí ya tienes los detalles del libro
+            console.log(data);
+        })
+        .catch(error => {
+            console.log("Algo ha fallado:", error);
+        });
+}
+
+// Llamada de prueba con título "Things Fall Apart"
+getBookByTitle("Things Fall Apart");
+
 
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
