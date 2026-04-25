@@ -58,9 +58,10 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
             book.reviews[username] = review;
             
             return res.status(200).json({
-                message: `La reseña del usuario ${username} para el libro con ISBN ${isbn} ha sido guardada/actualizada.`,
-                reviews: book.reviews
-            });
+                message: "Reseña añadida/actualizada correctamente",
+                reviews: books[isbn].reviews
+              });
+
         } else {
             return res.status(400).json({message: "Debe proporcionar el texto de la reseña en la consulta (query parameter)."});
         }
